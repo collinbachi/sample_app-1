@@ -11,13 +11,16 @@
   </aside>
 </div>
 
-<div class="center hero-unit">
- <%= week_calendar do |date| %>
-    <%= date %>
+<div id="calendar">
+  <%= calendar_for(@users) do |t| %>
+  <%= t.head('mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun') %>
+  <%= t.day do |day, users| %>
+    <%= day.day %>
+    <% users.each do |user| %>
+      <%= h(user.name) %>
+    <% end %>
   <% end %>
-  <br>
-  <br>
-  <%= month_calendar do |date| %>
-    <%= date %>
-  <% end %>
-  </div>
+<% end %>
+
+
+</div>

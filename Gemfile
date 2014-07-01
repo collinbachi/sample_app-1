@@ -10,7 +10,7 @@ gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 #gem 'fullcalendar-rails'
-gem "simple_calendar", "~> 1.1.0"
+gem "watu_table_builder", :require => "table_builder", :git => "git://github.com/watu/table_builder.git"
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
