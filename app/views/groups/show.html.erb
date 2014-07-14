@@ -1,0 +1,20 @@
+
+<% provide(:title, @group.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= @group.name %>
+      </h1>
+      <p>
+        <%= @group.description %>
+      </p>
+    </section>
+<section>
+  <% render 'shared/join_form' if signed_in? %> 
+</section>
+
+  </aside>
+</div>
+
+

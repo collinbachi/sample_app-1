@@ -1,4 +1,9 @@
 class User < ActiveRecord::Base
+  has_many :groups, dependent: :destroy
+  has_many :leader_member_relationships, foreign_key: "member_id", dependent: :destroy
+  has_many :leaders, through: :relationships, source: :member
+
+
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token
 
@@ -15,6 +20,18 @@ class User < ActiveRecord::Base
 
   def User.digest(token)
     Digest::SHA1.hexdigest(token.to_s)
+  end
+
+   def member?(group)
+    leader_member_relationships.find_by(leader_id: group.id)
+  end
+
+  def join!(group)
+    leader_member_relationships.create!(leader_id: group.id)
+  end
+
+  def leave!(group)
+    leader_member_relationships.find_by(leader_id: group.id).destroy
   end
 
   private

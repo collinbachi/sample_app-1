@@ -11,6 +11,22 @@
   </aside>
 </div>
 
+<div>
+ <%= link_to "Create Group", newgroup_path, class: "btn btn-med btn-primary" %>
+</div>
+
+<div class="span8">
+    <% if @user.groups.any? %>
+      <h3>Groups (<%= @user.groups.count %>)</h3>
+      <ol class="groups">
+        <%= render @groups %>
+      </ol>
+      <%= will_paginate @groups %>
+    <% end %>
+  </div>
+
+
+<br><br><br>
 <div id="calendar">
   <%= calendar_for(@users) do |t| %>
   <%= t.head('mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun') %>

@@ -1,8 +1,18 @@
 SampleApp::Application.routes.draw do
-  get "calendar/show"
-  resources :users
-  resources :sessions, only: [:new, :create, :destroy]
   
+  resources :users do
+    member do
+      get :member
+    end
+  end
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :groups do
+    member do
+      get :leader
+    end
+  end
+  resources :leader_member_relationships, only: [:create, :destroy]
+
   resource :calendar, only: [:show], controller: :calendar
   #root to: "calendar#show"
   
@@ -14,7 +24,8 @@ SampleApp::Application.routes.draw do
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
   #match '/index', to: 'static_pages#index', via: 'get'
-
+  match '/newgroup', to: 'groups#new',       via: 'get'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

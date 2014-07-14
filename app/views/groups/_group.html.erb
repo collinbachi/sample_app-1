@@ -1,0 +1,8 @@
+<li>
+	<span class="title"><%= link_to group.name, group %></span>
+  <span class="content"><%= group.description %></span>
+  <span class="timestamp">
+    Created <%= time_ago_in_words(group.created_at) %> ago.
+  </span>
+  
+</li>
